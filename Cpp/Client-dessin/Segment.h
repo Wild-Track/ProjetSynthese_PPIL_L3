@@ -1,18 +1,16 @@
 #pragma once
 
 #include "Form.h"
-#include "Vecteur2D.h"
 
 
-
-class Cross: public Form
+class Segment : public Form
 {
 private:
 	vector<Vecteur2D*> _pointList;
 	string _color;
 
 public:
-	Cross(Vecteur2D downLeft, Vecteur2D upRight, Vecteur2D downRight, Vecteur2D upLeft, string color);
+	Segment(Vecteur2D& c1, Vecteur2D& c2, string color);
 
 	void translation(const Vecteur2D& u);
 	void rotation(const Vecteur2D& invariantPoint, const double& rad);
@@ -20,4 +18,3 @@ public:
 
 	operator string();
 };
-

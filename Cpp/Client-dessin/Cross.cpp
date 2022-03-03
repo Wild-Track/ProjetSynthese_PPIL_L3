@@ -1,33 +1,35 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <sstream>
 #include <string.h>
 #include "Cross.h"
-#include "Connection.h"
 
-Cross::Cross(double left, double right, double up, double down)
+
+Cross::Cross(Vecteur2D downLeft, Vecteur2D upRight, Vecteur2D downRight, Vecteur2D upLeft, string color)
 {
-	_left = left;
-	_right = right;
-	_up = up;
-	_down = down;
+	_pointList.push_back(&downLeft);
+	_pointList.push_back(&upRight);
+	_pointList.push_back(&downRight);
+	_pointList.push_back(&upLeft);
+
 }
 
-void Cross::dessiner(Connection &co)
+void Cross::translation(const Vecteur2D& u)
 {
-	ostringstream ss;
-	ss << "form:cross:{left:" << _left << ",right:" << _right << ",up:" << _up << ",down:" << _down << "}";
-	string sstr;
-
-	int lenght = sstr.length();
-	char* request = (char*)malloc(sizeof(char) * lenght);
-
-	strcpy_s(request, sstr.c_str());
-
-	co.sendMsg(request);
-
-	free(request);
+	Form::translation(_pointList, u);
 }
 
-extern ostream& operator <<(ostream& os, const Form& f)
+void Cross::rotation(const Vecteur2D& invariantPoint, const double& rad)
 {
-	return os;
+	Form::rotation(_pointList, invariantPoint, rad);
+}
+
+void Cross::homotetie(double ratio, const Vecteur2D& invariant)
+{
+	Form::homotetie(_pointList, ratio, invariant);
+}
+
+Cross::operator string()
+{
+	return "Cross:" + string(*_pointList[0]) + "," + string(*_pointList[1]) + "," + string(*_pointList[2]) + "," + string(*_pointList[3]) + ";" + _color;
 }
