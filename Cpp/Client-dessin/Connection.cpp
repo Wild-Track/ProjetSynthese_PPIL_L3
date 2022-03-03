@@ -1,7 +1,7 @@
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include "Connection.h"
 
-#include <string.h>
+#include <string>
 #include <iostream>
 #include <winsock2.h>
 #include <sstream>
@@ -10,7 +10,7 @@
 
 #pragma comment(lib,"ws2_32.lib")
 
-#define L 200
+#define LONGUEURQUINESTPASVECTOR 200
 
 using namespace std;
 
@@ -93,7 +93,7 @@ void Connection::sendMsg(char* msg)
     {
         initConnection();
 
-        strcat_s(msg, (size_t)L, "\r\n");
+        strcat_s(msg, (size_t)LONGUEURQUINESTPASVECTOR, "\r\n");
         int l = strlen(msg);
 
         _winSwok = send(this->getSocket(), msg, l, 0);
@@ -111,7 +111,7 @@ void Connection::receiveMsg(char *response)
 {
     try 
     {
-        _winSwok = recv(this->getSocket(), response, L, 0);
+        _winSwok = recv(this->getSocket(), response, LONGUEURQUINESTPASVECTOR, 0);
 
         if (_winSwok == SOCKET_ERROR) throw Error("La reception à échoué");
 

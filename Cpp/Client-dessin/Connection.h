@@ -9,10 +9,6 @@
 
 #pragma comment(lib,"ws2_32.lib")
 
-#define L 200
-
-
-using namespace std;
 
 
 class Connection

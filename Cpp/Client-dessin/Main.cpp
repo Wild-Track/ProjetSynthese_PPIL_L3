@@ -1,4 +1,5 @@
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
 #include <winsock2.h>
@@ -6,22 +7,17 @@
 #include <ws2tcpip.h>
 
 #include "Connection.h"
-#include "Form.h"
 #include "Cross.h"
 
-#pragma comment(lib,"ws2_32.lib")
-
-#define L 200
+#define LONGUEUR 200
 #define adress "127.0.0.1"
 #define port 6969
-
-using namespace std;
 
 int main()
 {
 
-    char serverAdress[L] = adress;
-    char msg[L], *msg2 = (char *)malloc(sizeof(char) * L);
+    char serverAdress[LONGUEUR] = adress;
+    char msg[LONGUEUR], *msg2 = (char *)malloc(sizeof(char) * LONGUEUR);
     short serverPort = port;
 
     //cout << "Entrez l'IP du serveur : " << endl;
@@ -30,7 +26,7 @@ int main()
     //cin >> serverPort;
 
 
-    Connection co = Connection(serverAdress, serverPort);
+  /*  Connection co = Connection(serverAdress, serverPort);
 
     cout << "Entrez un msg" << endl;
     cin >> msg;
@@ -40,10 +36,12 @@ int main()
     co.receiveMsg(msg2);
 
     cout << msg2 << endl;
-
+*/
 
     //
 
-    Form* f1;
-    f1 = new Cross(40, 40, 100, 100);
+    Cross* f1;
+    f1 = new Cross(Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), Vecteur2D(1, 2), "red");
+    f1->translation(Vecteur2D(1, 1));
+    cout << string(*f1);
 }
