@@ -23,7 +23,7 @@ Vecteur2D& Form::rotationVector2D(Vecteur2D& v, const Vecteur2D& invariantPoint,
 	return v;
 }
 
-Vecteur2D& Form::homotetieVector2D(Vecteur2D& v, double ratio, const Vecteur2D& invariant)
+Vecteur2D& Form::homothetyVector2D(Vecteur2D& v, double ratio, const Vecteur2D& invariant)
 {
 	v._x = ((v._x - invariant._x) * ratio) + invariant._x;
 	v._y = ((v._y - invariant._y) * ratio) + invariant._y;
@@ -48,10 +48,10 @@ void Form::rotation(const Vecteur2D& invariantPoint, const double& rad)
 	}
 }
 
-void Form::homotetie(double ratio, const Vecteur2D& invariant)
+void Form::homothety(double ratio, const Vecteur2D& invariant)
 {
 	for (auto vector2D : _pointList)
 	{
-		homotetieVector2D(*vector2D, ratio, invariant);
+		homothetyVector2D(*vector2D, ratio, invariant);
 	}
 }
