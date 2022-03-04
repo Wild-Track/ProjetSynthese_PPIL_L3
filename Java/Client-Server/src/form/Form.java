@@ -19,14 +19,8 @@ public abstract class Form {
 		this.pointList = pointList;
 	}
 	
-
+	
 	public abstract void draw();
-	
-	public abstract void translation(Vecteur2D u);
-
-	public abstract void rotation(Vecteur2D inv, double teta);
-	
-	public abstract void homothety(Vecteur2D inv, double ratio);
 
 
 }

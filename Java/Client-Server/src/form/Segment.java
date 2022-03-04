@@ -17,24 +17,6 @@ public class Segment extends Form {
 		
 	}
 
-	@Override
-	public void translation(Vecteur2D u) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void rotation(Vecteur2D inv, double teta) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void homothety(Vecteur2D inv, double ratio) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	public String getColor() {
 		return color;
