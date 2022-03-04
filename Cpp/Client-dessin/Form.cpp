@@ -32,25 +32,25 @@ Vecteur2D& Form::homotetieVector2D(Vecteur2D& v, double ratio, const Vecteur2D& 
 }
 
 
-void Form::translation(vector<Vecteur2D*> pointList, const Vecteur2D& u)
+void Form::translation(const Vecteur2D& u)
 {
-	for (Vecteur2D* vector2D : pointList)
+	for (Vecteur2D* vector2D : _pointList)
 	{
 		translationVector2D(*vector2D, u);
 	}
 }
 
-void Form::rotation(vector<Vecteur2D*> pointList, const Vecteur2D& invariantPoint, const double& rad)
+void Form::rotation(const Vecteur2D& invariantPoint, const double& rad)
 {
-	for (auto* vector2D : pointList)
+	for (auto* vector2D : _pointList)
 	{
 		rotationVector2D(*vector2D, invariantPoint, rad);
 	}
 }
 
-void Form::homotetie(vector<Vecteur2D*> pointList, double ratio, const Vecteur2D& invariant)
+void Form::homotetie(double ratio, const Vecteur2D& invariant)
 {
-	for (auto vector2D : pointList)
+	for (auto vector2D : _pointList)
 	{
 		homotetieVector2D(*vector2D, ratio, invariant);
 	}
