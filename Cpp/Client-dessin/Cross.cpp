@@ -19,5 +19,5 @@ void Cross::accept(const FormVisitor* formVisitor)
 
 Cross::operator string() const
 {
-	return "Cross:" + string(*_pointList[0]) + "," + string(*_pointList[1]) + "," + string(*_pointList[2]) + "," + string(*_pointList[3]) + ((this->Form::getFormGroup() == NULL) ? ";" + this->Form::_color : "");
+	return "type:cross,coord:" + string(*_pointList[0]) + string(*_pointList[1]) + string(*_pointList[2]) + string(*_pointList[3]) + ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
 }

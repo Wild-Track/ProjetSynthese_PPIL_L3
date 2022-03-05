@@ -16,7 +16,7 @@ void Circle::homothety(double ratio, const Vecteur2D& invariant)
 
 Circle::operator string() const
 {
-	return "Circle:" + string(*_pointList[0]) + ";" + to_string(_radius) + ((this->Form::getFormGroup() == NULL) ? ";" + this->Form::_color : "");
+	return "type:circle,coord:" + string(*_pointList[0]) + ",radius:" + to_string(_radius) + ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
 }
 
 void Circle::accept(const FormVisitor* formVisitor)
