@@ -8,6 +8,7 @@
 using namespace std;
 
 class FormGroup;
+class FormVisitor;
 
 class Form
 {
@@ -28,8 +29,12 @@ public:
 	virtual void rotation(const Vecteur2D& invariantPoint, const double& rad);
 	virtual void homothety(double ratio, const Vecteur2D& invariant);
 
+	virtual operator string() const = 0;
+
+	virtual void accept(const FormVisitor* formVisitor) = 0;
+
+
 	FormGroup* getFormGroup() const { return _group; }
 	Form& setFormGroup(FormGroup* group) { _group = group; return *this; }
-
-	virtual operator string() const = 0;
+	string getColor() const { return _color; }
 };

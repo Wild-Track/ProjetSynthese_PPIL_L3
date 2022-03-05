@@ -20,7 +20,14 @@ public:
 	void rotation(const Vecteur2D& invariantPoint, const double& rad);
 	void homothety(double ratio, const Vecteur2D& invariant);
 
+
 	bool operator ==(const FormGroup& group);
 	operator string() const;
+
+	void accept(const FormVisitor* formVisitor);
+
+
+	vector<Form*> getFromList() const { return _formList; };
+	string getName() const { return _name; };
 };
 

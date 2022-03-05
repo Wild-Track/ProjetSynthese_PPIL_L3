@@ -4,7 +4,6 @@
 #include "Vecteur2D.h"
 
 
-
 class Circle : public Form
 {
 private:
@@ -16,4 +15,7 @@ public:
 	void homothety(double ratio, const Vecteur2D& invariant);
 	
 	operator string() const;
+
+	void accept(const FormVisitor* formVisitor);
+
 };

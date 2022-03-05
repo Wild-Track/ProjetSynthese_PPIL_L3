@@ -1,4 +1,5 @@
 #include "FormGroup.h"
+#include "FormVisitor.h"
 
 
 FormGroup::FormGroup(string name, string color): Form(color)
@@ -62,4 +63,9 @@ FormGroup::operator string() const
 	out += this->Form::_color;
 	out += "}";
 	return out;
+}
+
+void FormGroup::accept(const FormVisitor* formVisitor)
+{
+	formVisitor->visite(this);
 }

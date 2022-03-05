@@ -1,4 +1,5 @@
 #include "Circle.h"
+#include "FormVisitor.h"
 
 
 Circle::Circle(Vecteur2D center, double radius, string color) : Form(color)
@@ -15,5 +16,10 @@ void Circle::homothety(double ratio, const Vecteur2D& invariant)
 
 Circle::operator string() const
 {
-	return "Circle:" + string(*_pointList[0]) + ";" + to_string(_radius) + ((this->Form::getFormGroup() == NULL) ? ";" + this->Form::_color : "") + "/";
+	return "Circle:" + string(*_pointList[0]) + ";" + to_string(_radius) + ((this->Form::getFormGroup() == NULL) ? ";" + this->Form::_color : "");
+}
+
+void Circle::accept(const FormVisitor* formVisitor)
+{
+	formVisitor->visite(this);
 }
