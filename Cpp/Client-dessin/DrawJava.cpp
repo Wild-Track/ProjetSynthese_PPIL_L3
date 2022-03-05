@@ -35,6 +35,18 @@ void DrawJava::visite(const Segment* form) const
 	drawOnServer(data);
 }
 
+void DrawJava::visite(const Triangle* form) const
+{
+	string data = "{" + string(*form) + "}";
+	drawOnServer(data);
+}
+
+void DrawJava::visite(const polygon::Polygon* form) const
+{
+	string data = "{" + string(*form) + "}";
+	drawOnServer(data);
+}
+
 void DrawJava::drawOnServer(string data) const
 {
 	Connection* instanceConnection = Connection::getInstance(ADRESS, PORT);

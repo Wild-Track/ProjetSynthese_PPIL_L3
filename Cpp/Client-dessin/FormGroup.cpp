@@ -58,10 +58,9 @@ FormGroup::operator string() const
 
 	for (Form* form : _formList)
 	{
-		out += string(*form);
+		out += string(*form) + ";";
 	}
-	out += this->Form::_color;
-	out += "}";
+	out += "color:" + this->Form::_color + ",nom:" + _name + "}";
 	return out;
 }
 
