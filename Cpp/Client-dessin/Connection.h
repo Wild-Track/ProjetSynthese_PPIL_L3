@@ -14,23 +14,25 @@
 class Connection
 {
 private:
-	int _winSwok, _port;
-	SOCKET _socket;
-	char* _adress;
+	int _port;
+	string _adress;
+	static Connection* _instance;
 
 	static bool _lib_init;
+	Connection(string adress, int port);
 
 public:
-	Connection(char* adress, int port);
-	void initConnection();
-	void closeConnection();
 
-	void sendMsg(char* msg);
-	void receiveMsg(char *msg);
+	static Connection* getInstance(string adress, int port);
 
-	int getWinSwok() { return _winSwok; };
-	SOCKET getSocket() { return _socket; };
-	static void setLibInit(bool b) { _lib_init = b; }
+
+
+
+	SOCKET* createSocket();
+	void closeSocket(SOCKET* sock);
+
+	void sendMsg(string msg, SOCKET* sock);
+	void receiveMsg(string& msg, SOCKET* sock);
 
 	virtual ~Connection();
 };

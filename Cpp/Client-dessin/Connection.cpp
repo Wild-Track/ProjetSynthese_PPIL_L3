@@ -10,30 +10,23 @@
 
 #pragma comment(lib,"ws2_32.lib")
 
-#define LONGUEURQUINESTPASVECTOR 200
+constexpr int LENGHT = 200;
 
 using namespace std;
 
-Connection::Connection(char* adress, int port)
+Connection::Connection(string adress, int port)
 {
-    _winSwok = 0;
-    _socket = 0;
     _adress = adress;
     _port = port;
 
     try
     {
         // Initialisation de la DLLWinSwok une seule fois dans le programme 
-        if (_lib_init == false)
-        {
-            WSADATA wsaData;
+        WSADATA wsaData;
 
-            _winSwok = WSAStartup(MAKEWORD(2, 0), &wsaData);
+        int winSwok = WSAStartup(MAKEWORD(2, 0), &wsaData);
 
-            if (_winSwok) throw Error("L'initialisation à échoué");
-
-            _lib_init = true;
-        }
+        if (winSwok) throw Error("L'initialisation à échoué");
     }
     catch (Error error)
     {
@@ -42,16 +35,25 @@ Connection::Connection(char* adress, int port)
 
 }
 
-void Connection::initConnection()
+Connection* Connection::getInstance(string adress = "", int port = 0)
+{
+    if (_instance == NULL)
+    {
+        _instance = new Connection(adress, port);
+    }
+    return _instance;
+}
+
+SOCKET* Connection::createSocket()
 {
     // Création du socket
     int familyAdress = AF_INET;    // IPv4
     int typeSocket = SOCK_STREAM;  // Mode TCP
     int protocole = IPPROTO_TCP;   // Protocole, on peut mettre 0 et la fct choisit le protocole en fct des 2 1ers paramètres
 
-    _socket = socket(familyAdress, typeSocket, protocole);
+    SOCKET sock = socket(familyAdress, typeSocket, protocole);
 
-    if (_socket == INVALID_SOCKET)
+    if (sock == INVALID_SOCKET)
     {
         ostringstream oss;
         oss << "La création du socket à échoué : " << WSAGetLastError() << endl;
@@ -64,41 +66,39 @@ void Connection::initConnection()
 
     SOCKADDR_IN sockAdress;  // Contient les information du serveur
     sockAdress.sin_family = AF_INET;
-    sockAdress.sin_addr.s_addr = inet_addr(_adress);
+    sockAdress.sin_addr.s_addr = inet_addr(_adress.c_str());
     sockAdress.sin_port = htons(_port);  // Assure que le port est bien inscrit dans le format du réseau
-                                        // Little/Big endian
+                                         // Little/Big endian
 
 
     // Connexion au serveur
-    _winSwok = connect(_socket, (SOCKADDR*)&sockAdress, sizeof(sockAdress));
+    int winSwok = connect(sock, (SOCKADDR*)&sockAdress, sizeof(sockAdress));
 
-    if (_winSwok == SOCKET_ERROR) throw Error("La connexion à échoué : ");
+    if (winSwok == SOCKET_ERROR) throw Error("La connexion à échoué : ");
 
-    cout << "Yeah connexion au serveur réussi" << endl;
+    return &sock;
 }
 
-void Connection::closeConnection()
+void Connection::closeSocket(SOCKET* sock)
 {
-    _winSwok = shutdown(this->getSocket(), SD_BOTH);
+    int winSwok = shutdown(*sock, SD_BOTH);
 
     if (SOCKET_ERROR == 0) throw Error("La coupure de connexion à échoué");
 
-    _winSwok = closesocket(this->getSocket());
-    if (_winSwok) throw Error("La fermeture du socket à echoué");
+    winSwok = closesocket(*sock);
+    if (winSwok) throw Error("La fermeture du socket à echoué");
 }
 
-void Connection::sendMsg(char* msg)
+void Connection::sendMsg(string msg, SOCKET* sock)
 {
     try
     {
-        initConnection();
+        msg += "\r\n";
+        int l = msg.length();
 
-        strcat_s(msg, (size_t)LONGUEURQUINESTPASVECTOR, "\r\n");
-        int l = strlen(msg);
+        int winSwok = send(*sock, msg.c_str(), l, 0);
 
-        _winSwok = send(this->getSocket(), msg, l, 0);
-
-        if (_winSwok == SOCKET_ERROR) throw Error("Echec de l'envoi de la requete ");
+        if (winSwok == SOCKET_ERROR) throw Error("Echec de l'envoi de la requete ");
 
     }
     catch (Error error)
@@ -107,18 +107,21 @@ void Connection::sendMsg(char* msg)
     }
 }
 
-void Connection::receiveMsg(char *response)
+void Connection::receiveMsg(string& response, SOCKET* sock)
 {
     try 
     {
-        _winSwok = recv(this->getSocket(), response, LONGUEURQUINESTPASVECTOR, 0);
+        char* res;
+        int winSwok = recv(*sock, res, LENGHT, 0);
 
-        if (_winSwok == SOCKET_ERROR) throw Error("La reception à échoué");
+        if (winSwok == SOCKET_ERROR) throw Error("La reception à échoué");
 
-        char* p = strchr(response, '\n');
+        char* p = strchr(res, '\n');
         *p = '\0';
 
-        closeConnection();
+        response = res;
+
+        closeSocket(sock);
 
     }
     catch (Error error)
@@ -131,21 +134,10 @@ Connection::~Connection()
 {
     try
     {
-        _winSwok = shutdown(this->getSocket(), SD_BOTH);
-
-        if (_winSwok == SOCKET_ERROR) throw Error("La coupure de connexion à échoué");
-
-        _winSwok = closesocket(this->getSocket());
-        if (_winSwok) throw Error("La fermeture du socket à echoué");
-
         WSACleanup();
-
     }
     catch (Error error)
     {
         cerr << error << endl;
     }
 }
-
-// Mise en place du booléen servant à charger la lib avec WSAStartup qu'une seule fois
-bool Connection::_lib_init = false;
