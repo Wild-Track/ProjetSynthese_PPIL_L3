@@ -1,14 +1,12 @@
 #include "Polygon.h"
 #include "FormVisitor.h"
 
-using namespace polygon;
-
-Polygon::Polygon(vector<Vecteur2D> listPoint, string color) : Form(color)
+polygon::Polygon::Polygon(vector<Vecteur2D*> listPoint, string color) : Form(color)
 {
-	copy(listPoint.begin(), listPoint.end(), _pointList);
+	copy(listPoint.begin(), listPoint.end(), back_inserter(_pointList));
 }
 
-Polygon::operator string() const
+polygon::Polygon::operator string() const
 {
 	string out = "type:polygon,coord:";
 	for (Vecteur2D* point : _pointList)
@@ -20,7 +18,7 @@ Polygon::operator string() const
 	return out;
 }
 
-void Polygon::accept(const FormVisitor* formVisitor)
+void polygon::Polygon::accept(const FormVisitor* formVisitor)
 {
 	formVisitor->visite(this);
 }
