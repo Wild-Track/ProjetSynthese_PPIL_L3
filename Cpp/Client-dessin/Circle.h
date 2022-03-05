@@ -9,12 +9,11 @@ class Circle : public Form
 {
 private:
 	double _radius;
-	string _color;
 
 public:
 	Circle(Vecteur2D center, double radius, string color);
 
 	void homothety(double ratio, const Vecteur2D& invariant);
 	
-	operator string();
+	operator string() const;
 };

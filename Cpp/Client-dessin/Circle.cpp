@@ -1,20 +1,19 @@
 #include "Circle.h"
 
 
-Circle::Circle(Vecteur2D center, double radius, string color)
+Circle::Circle(Vecteur2D center, double radius, string color) : Form(color)
 {
 	_pointList.push_back(&center);
 	_radius = radius;
-	_color = color;
 }
 
 void Circle::homothety(double ratio, const Vecteur2D& invariant)
 {
 	Form::homothetyVector2D(*_pointList[0], ratio, invariant);
-	_radius *= ratio;
+	_radius = abs(_radius * ratio);
 }
 
-Circle::operator string()
+Circle::operator string() const
 {
-	return "Circle:" + string(*_pointList[0]) + ";" + to_string(_radius) + ";" + _color;
+	return "Circle:" + string(*_pointList[0]) + ";" + to_string(_radius) + ((this->Form::getFormGroup() == NULL) ? ";" + this->Form::_color : "") + "/";
 }
