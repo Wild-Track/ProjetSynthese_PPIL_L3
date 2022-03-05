@@ -51,9 +51,10 @@ SOCKET* Connection::createSocket()
     int typeSocket = SOCK_STREAM;  // Mode TCP
     int protocole = IPPROTO_TCP;   // Protocole, on peut mettre 0 et la fct choisit le protocole en fct des 2 1ers paramètres
 
-    SOCKET sock = socket(familyAdress, typeSocket, protocole);
+    SOCKET* sock = (SOCKET*)malloc(sizeof(SOCKET));
+    *sock = socket(familyAdress, typeSocket, protocole);
 
-    if (sock == INVALID_SOCKET)
+    if (*sock == INVALID_SOCKET)
     {
         ostringstream oss;
         oss << "La création du socket à échoué : " << WSAGetLastError() << endl;
@@ -72,11 +73,11 @@ SOCKET* Connection::createSocket()
 
 
     // Connexion au serveur
-    int winSwok = connect(sock, (SOCKADDR*)&sockAdress, sizeof(sockAdress));
+    int winSwok = connect(*sock, (SOCKADDR*)&sockAdress, sizeof(sockAdress));
 
     if (winSwok == SOCKET_ERROR) throw Error("La connexion à échoué : ");
 
-    return &sock;
+    return sock;
 }
 
 void Connection::closeSocket(SOCKET* sock)
@@ -87,6 +88,8 @@ void Connection::closeSocket(SOCKET* sock)
 
     winSwok = closesocket(*sock);
     if (winSwok) throw Error("La fermeture du socket à echoué");
+
+    free(sock);
 }
 
 void Connection::sendMsg(string msg, SOCKET* sock)
@@ -111,7 +114,7 @@ void Connection::receiveMsg(string& response, SOCKET* sock)
 {
     try 
     {
-        char* res;
+        char res[LENGHT];
         int winSwok = recv(*sock, res, LENGHT, 0);
 
         if (winSwok == SOCKET_ERROR) throw Error("La reception à échoué");
