@@ -1,5 +1,7 @@
 package form;
 
+import java.awt.Graphics;
+
 public class Segment extends Form {
 	
 	private String color;
@@ -12,9 +14,11 @@ public class Segment extends Form {
 	}
 
 	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
+	public void draw(Graphics g) {
+		int[] p1 = this.pointList.get(0).arrondi();
+		int[] p2 = this.pointList.get(1).arrondi();
+		g.setColor(getColor(color));
+		g.drawLine(p1[0], p1[1], p2[0], p2[1]);
 	}
 
 

@@ -1,5 +1,7 @@
 package form;
 
+import java.awt.Graphics;
+
 public class Circle extends Form {
 
 	private double raduis;
@@ -8,14 +10,17 @@ public class Circle extends Form {
 	public Circle(Vecteur2D u, double raduis, String color) {
 		super();
 		this.raduis = raduis;
-		this.color = color;
 		this.pointList.add(u);
+		this.color = color;
 	}
 
 	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
+	public void draw(Graphics g) {
+		int largeur = (int) (2 * raduis);
+		int hauteur = largeur;
+		int[] tab = pointList.get(0).arrondi();
+		g.setColor(getColor(color));
+		g.fillOval(tab[0], tab[1], largeur, hauteur);
 	}
 	
 

@@ -1,5 +1,6 @@
 package form;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class FormGroup extends Form {
@@ -8,6 +9,7 @@ public class FormGroup extends Form {
 	
 	public FormGroup() {
 		super();
+		forms = new ArrayList<Form>();
 	}
 	
 	
@@ -24,8 +26,10 @@ public class FormGroup extends Form {
 	}
 
 	@Override
-	public void draw() {
-		forms.forEach(n -> draw());
+	public void draw(Graphics g) {
+		for(int i = 0; i < forms.size(); i++) {
+			forms.get(i).draw(g);
+		}
 	}
 
 }
