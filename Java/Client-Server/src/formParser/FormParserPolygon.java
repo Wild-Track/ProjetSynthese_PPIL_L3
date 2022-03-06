@@ -12,6 +12,9 @@ public class FormParserPolygon extends FormParserCOR {
 		super(suivant);
 	}
 
+	/**
+	 * Regarde si la chaine est un polygone et la transforme si c'est le cas
+	 */
 	@Override
 	public Form Parser(String s) {
 		String s1 = s.substring(6);

@@ -4,6 +4,10 @@ import java.awt.Graphics;
 
 public class Circle extends Form {
 
+	/**
+	 * Classe de Cercle 
+	 * Possede un Vecteur2D qui sert de repere et le rayon du cercle
+	 */
 	private double raduis;
 	private String color;
 	
@@ -14,6 +18,9 @@ public class Circle extends Form {
 		this.color = color;
 	}
 
+	/**
+	 * Dessine un cercle remplit
+	 */
 	@Override
 	public void draw(Graphics g) {
 		int largeur = (int) (2 * raduis);

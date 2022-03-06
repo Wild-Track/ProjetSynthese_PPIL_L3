@@ -1,7 +1,10 @@
 package form;
 
-public class Vecteur2D
-{
+public class Vecteur2D {
+	/**
+	 * Classe de Vecteur
+	 * Sert a representer les Objets
+	 */
     public double x, y;
 
     public Vecteur2D(double x, double y) {

@@ -3,7 +3,10 @@ package form;
 import java.awt.Graphics;
 
 public class Cross extends Form {
-	
+	/**
+	 * Similaire a la classe Segment 
+	 * Attention à l'ordre des parametres les deux premiers sont pour le premier segment et les deux derniers pour le second
+	 */
 	private String color;
 	
 	public Cross(String id, Vecteur2D dl, Vecteur2D ur, Vecteur2D dr, Vecteur2D ul, String color) {

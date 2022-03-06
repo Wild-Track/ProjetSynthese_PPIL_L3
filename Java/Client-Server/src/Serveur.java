@@ -17,7 +17,12 @@ import formParser.FormParserPolygon;
 import formParser.FormParserSegment;
 
 public class Serveur {
-
+	/**
+	 * Initialisation du serveur, des experts et de la Frame de dessin
+	 * Le serveur se met a disposition
+	 * Boucle sur les requetes du client et le dessine grace au methodes fournit
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		int servPort = 1337;
 		try {

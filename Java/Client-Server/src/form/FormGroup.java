@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 public class FormGroup extends Form {
 	
+	/**
+	 * Classe de groupe de forme
+	 * Permet de stocker les formes 
+	 */
 	private ArrayList<Form> forms;
 	
 	public FormGroup(String id) {
@@ -25,6 +29,9 @@ public class FormGroup extends Form {
 		forms.remove(f);
 	}
 
+	/**
+	 * On appel la methode de dessin de la classe de Form
+	 */
 	@Override
 	public void draw(Graphics g) {
 		for(int i = 0; i < forms.size(); i++) {

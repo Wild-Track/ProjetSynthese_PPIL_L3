@@ -7,6 +7,10 @@ import java.util.Map;
 
 public abstract class Form {
 	
+	/**
+	 * Classe des formes
+	 * possède une map static pour trouver les couleurs correspondantes aux Strings fournis
+	 */
 	protected String id;
 	protected ArrayList<Vecteur2D> pointList;
 	protected static Map<String, Color> colorMap = Map.ofEntries(
@@ -44,6 +48,10 @@ public abstract class Form {
 		this.id = id;
 	}
 
+	/**
+	 * Toutes les heritiers implementrons une representation au pixel pret
+	 * @param g
+	 */
 	public abstract void draw(Graphics g);
 
 

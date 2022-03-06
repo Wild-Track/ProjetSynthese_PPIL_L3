@@ -4,6 +4,9 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Polygon extends Form {
+	/**
+	 *  Cree un polygone du nombre de point fourni
+	 */
 	
 	private String color;
 	
@@ -15,7 +18,10 @@ public class Polygon extends Form {
 		this.setColor(color);
 		
 	}
-
+	
+	/**
+	 * Dessine le polygone en récupérant tous les abscisses et toutes les ordonnees
+	 */
 	@Override
 	public void draw(Graphics g) {
 		int n = pointList.size();

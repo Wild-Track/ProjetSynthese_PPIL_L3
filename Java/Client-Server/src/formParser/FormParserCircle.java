@@ -5,11 +5,14 @@ import form.Form;
 import form.Vecteur2D;
 
 public class FormParserCircle extends FormParserCOR {
-
+	
 	public FormParserCircle(FormParserCOR suivant) {
 		super(suivant);
 	}
 	
+	/**
+	 * Regarde si la chaine est un cercle et la transforme si c'est le cas
+	 */
 	@Override
 	public Form Parser(String s) {
 		String s1 = s.substring(6);

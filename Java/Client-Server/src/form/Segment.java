@@ -2,8 +2,11 @@ package form;
 
 import java.awt.Graphics;
 
-public class Segment extends Form {
-	
+public class Segment extends Form {	
+	/**
+	 * Classe de Segment
+	 * Possede deux Vecteur2D pour representer les deux extremites
+	 */
 	private String color;
 	
 	public Segment(String id, Vecteur2D u1, Vecteur2D u2, String color) {
@@ -13,6 +16,9 @@ public class Segment extends Form {
 		this.color = color;
 	}
 
+	/**
+	 * Dessine le Segment
+	 */
 	@Override
 	public void draw(Graphics g) {
 		int[] p1 = this.pointList.get(0).arrondi();
