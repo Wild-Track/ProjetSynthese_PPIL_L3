@@ -58,26 +58,17 @@ public class Serveur {
                 
                 if (request != null) {
                     System.out.println(request);
-                    Form f = fParser.findParser(request);
-                    
-                    boolean find = false;
-                    int position = -1;
-                    for(int i = 0; i < listForm.size(); i++) {
-                    	if(listForm.get(i).getId() == f.getId()) {
-                    		find = true;
-                    		position = i;
-                    	}
-                    }
-                    if(find) {
-                    	listForm.set(position, f);
-                        graphics.clearRect(0, 0, 800, 800);
-                    	for(int i = 0; i < listForm.size(); i++) {
-                    		listForm.get(i).draw(graphics);
+                    if(request.contains("groupform")) {
+                    	request.substring(10);
+                    	String split[] = request.split("\\}");
+                    	for(int i = 0; i < split.length; i++) {
+                    		Form f = fParser.findParser(split[i]);
+                        	processing(f, graphics, listForm);
                     	}
                     }
                     else {
-                    	listForm.add(f);
-                    	f.draw(graphics);
+                    	Form f = fParser.findParser(request);
+                    	processing(f, graphics, listForm);
                     }
         			strategie.show();
                 }
@@ -86,7 +77,28 @@ public class Serveur {
 		} catch (java.io.IOException | InterruptedException e) {
             System.out.println("Erreur : " + e.toString());
         }
-
+	}
+	
+	public static void processing(Form f, Graphics g, ArrayList<Form> listForm) {
+        boolean find = false;
+        int position = -1;
+        for(int i = 0; i < listForm.size(); i++) {
+        	if(listForm.get(i).getId() == f.getId()) {
+        		find = true;
+        		position = i;
+        	}
+        }
+        if(find) {
+        	listForm.set(position, f);
+            g.clearRect(0, 0, 800, 800);
+        	for(int i = 0; i < listForm.size(); i++) {
+        		listForm.get(i).draw(g);
+        	}
+        }
+        else {
+        	listForm.add(f);
+        	f.draw(g);
+        }
 	}
 
 }
