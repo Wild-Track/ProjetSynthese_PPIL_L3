@@ -5,6 +5,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
+import formParser.FormParser;
+import formParser.FormParserCOR;
+import formParser.FormParserCircle;
+import formParser.FormParserCross;
+import formParser.FormParserPolygon;
+import formParser.FormParserSegment;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -33,10 +40,10 @@ public class Test {
 			
 			Vecteur2D v3 = new Vecteur2D(100, 100);
 			
-			Form f2 = new Circle(2, v3, 50, "blue");
+			Form f2 = new Circle("circle2", v3, 50, "blue");
 //			f2.draw(graphics);
 			
-			FormGroup fg = new FormGroup(100);
+			FormGroup fg = new FormGroup("100");
 //			fg.addElement(f1);
 			fg.addElement(f2);
 			
@@ -61,10 +68,21 @@ public class Test {
 //			
 //			Form f4 = new Polygon(4, pointList, "cyan");
 //			fg.addElement(f4);
-			Form f3 = new Cross(3, v4, v5, v6, v7, "green");
-			fg.addElement(f3);
+//			Form f3 = new Cross("cross3", v4, v5, v6, v7, "green");
+//			fg.addElement(f3);
 			
 			fg.draw(graphics);
+
+			FormParser fParser;
+			FormParserCOR fSegment = new FormParserSegment(null);
+			FormParserCOR fPolygon = new FormParserPolygon(fSegment);
+			FormParserCOR fCross = new FormParserCross(fPolygon);
+			FormParserCOR fCircle = new FormParserCircle(fCross);
+			
+			fParser = fCircle;
+			
+			Form f5 = fParser.findParser("{type:triangle,id:triangle1,coord:(30,30)(30,100)(100,100),color:red");
+			f5.draw(graphics);
 			
 			strategie.show();
 			

@@ -6,7 +6,7 @@ public class Segment extends Form {
 	
 	private String color;
 	
-	public Segment(int id, Vecteur2D u1, Vecteur2D u2, String color) {
+	public Segment(String id, Vecteur2D u1, Vecteur2D u2, String color) {
 		super(id);
 		this.pointList.add(u1);
 		this.pointList.add(u2);

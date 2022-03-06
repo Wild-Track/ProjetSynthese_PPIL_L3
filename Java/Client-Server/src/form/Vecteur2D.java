@@ -15,7 +15,7 @@ public class Vecteur2D
         return "(" + x + ", " + y + ")";
     }
 
-    public Vecteur2D somme(Vecteur2D v) {
+	public Vecteur2D somme(Vecteur2D v) {
         return new Vecteur2D(this.x + v.x, this.y + v.y);
     }
 
@@ -42,4 +42,5 @@ public class Vecteur2D
     public int[] arrondi() {
         return new int[] {(int) this.x, (int) this.y};
     }
+    
 }

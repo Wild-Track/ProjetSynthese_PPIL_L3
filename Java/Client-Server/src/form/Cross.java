@@ -6,7 +6,7 @@ public class Cross extends Form {
 	
 	private String color;
 	
-	public Cross(int id, Vecteur2D dl, Vecteur2D ur, Vecteur2D dr, Vecteur2D ul, String color) {
+	public Cross(String id, Vecteur2D dl, Vecteur2D ur, Vecteur2D dr, Vecteur2D ul, String color) {
 		super(id);
 		this.pointList.add(dl);
 		this.pointList.add(ur);
