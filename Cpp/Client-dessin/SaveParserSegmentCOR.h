@@ -4,6 +4,7 @@
 #include "SaveParserCOR.h"
 #include "Segment.h"
 
+//! @brief Parser la forme : segment
 class SaveParserSegmentCOR : public SaveParserCOR
 {
 public:

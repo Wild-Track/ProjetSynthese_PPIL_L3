@@ -8,6 +8,9 @@
 #include "Polygon.h"
 #include "FormGroup.h"
 
+//! @brief  Classe abstraites du DP Visitor avec les fonctions a implementer
+//! 
+//! Toutes les fonctionnalites a ajouter tel que librairies graphiques ou encore format de sauvegarde viendront s'ajouter
 class FormVisitor
 {
 public:

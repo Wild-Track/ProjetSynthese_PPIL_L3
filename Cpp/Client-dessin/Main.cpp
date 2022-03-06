@@ -7,6 +7,7 @@
 #include <ws2tcpip.h>
 #include <sstream>
 #include <fstream>
+#include <time.h>
 
 
 #include "Connection.h"
@@ -31,7 +32,7 @@ int main()
 {
     cout << "Création d'un croix : id : cross1, corrdonées : (1, 1)(2, 2)(2, 1)(1, 2), couleur : red" << endl;
     Cross* c1;
-    c1 = new Cross("cross1", Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), Vecteur2D(1, 2), "red");
+    c1 = new Cross("cross1", Vecteur2D(100, 100), Vecteur2D(200, 200), Vecteur2D(200, 100), Vecteur2D(100, 200), "red");
     cout << "forme sous forme string : " << string(*c1) << endl;
 
     cout << "translation de la croix" << endl;
@@ -43,7 +44,7 @@ int main()
     cout << string(*c1) << endl;
 
     cout << "rotation de la croix" << endl;
-    c1->rotation(Vecteur2D(1, 1), 3.14156 / 2);
+    c1->rotation(Vecteur2D(100, 100), 3.14156 / 2);
     cout << string(*c1) << endl;
 
     cout << endl << "Création d'un groupe et ajout de la croix" << endl;
@@ -54,7 +55,7 @@ int main()
 
     cout << endl << "création d'un triangle ayant pour id t1 et coordonnées (1,1) (2,2) (2,1) et couleur red" << endl;
     Triangle* t1;
-    t1 = new Triangle("t1", Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), "red");
+    t1 = new Triangle("t1", Vecteur2D(100, 100), Vecteur2D(200, 200), Vecteur2D(200, 100), "red");
 
     cout << "envoie au serv du triangle" << endl;
     t1->accept(new DrawJava());
@@ -64,7 +65,11 @@ int main()
     cout << "Sauvegarde du triangle dans un fichier txt dans le répertoire Save" << endl;
     t1->accept(new Savetxt());
 
+    
+    string wait;
 
+    cout << endl << endl << "Appuyez sur q puis entrer pour quitter le programme" << endl;
+    cin >> wait;
 
 
     // Mise en place de COR finit, il faut remplir les parser

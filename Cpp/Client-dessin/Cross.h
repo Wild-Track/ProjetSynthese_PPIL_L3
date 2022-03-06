@@ -4,7 +4,7 @@
 #include "Vecteur2D.h"
 
 
-
+//! @brief Classe croix qui etend de forme
 class Cross: public Form
 {
 public:

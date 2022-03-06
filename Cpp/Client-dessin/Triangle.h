@@ -2,7 +2,7 @@
 
 #include "Form.h"
 
-
+//! @brief Classe triangle qui etend de form
 class Triangle : public Form
 {
 public:

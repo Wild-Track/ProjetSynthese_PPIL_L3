@@ -4,6 +4,7 @@
 #include "SaveParserCOR.h"
 #include "Triangle.h"
 
+//! @brief Parser pour la forme triangle
 class SaveParserTriangleCOR : public SaveParserCOR
 {
 public:

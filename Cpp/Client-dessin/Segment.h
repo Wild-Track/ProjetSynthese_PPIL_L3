@@ -2,7 +2,7 @@
 
 #include "Form.h"
 
-
+//! @brief Classe Segment qui etend de form
 class Segment : public Form
 {
 public:
