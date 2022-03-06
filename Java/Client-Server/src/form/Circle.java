@@ -7,8 +7,8 @@ public class Circle extends Form {
 	private double raduis;
 	private String color;
 	
-	public Circle(Vecteur2D u, double raduis, String color) {
-		super();
+	public Circle(int id, Vecteur2D u, double raduis, String color) {
+		super(id);
 		this.raduis = raduis;
 		this.pointList.add(u);
 		this.color = color;

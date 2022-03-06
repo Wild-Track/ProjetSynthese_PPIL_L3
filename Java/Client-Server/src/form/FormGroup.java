@@ -7,8 +7,8 @@ public class FormGroup extends Form {
 	
 	private ArrayList<Form> forms;
 	
-	public FormGroup() {
-		super();
+	public FormGroup(int id) {
+		super(id);
 		forms = new ArrayList<Form>();
 	}
 	

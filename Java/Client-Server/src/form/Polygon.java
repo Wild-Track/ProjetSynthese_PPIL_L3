@@ -7,8 +7,8 @@ public class Polygon extends Form {
 	
 	private String color;
 	
-	public Polygon(ArrayList<Vecteur2D> pointList, String color) {
-		super();
+	public Polygon(int id, ArrayList<Vecteur2D> pointList, String color) {
+		super(id);
 		for(int i = 0; i < pointList.size(); i++) {
 			this.pointList.add(pointList.get(i));
 		}

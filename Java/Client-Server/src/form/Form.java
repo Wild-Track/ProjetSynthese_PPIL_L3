@@ -7,6 +7,7 @@ import java.util.Map;
 
 public abstract class Form {
 	
+	protected int id;
 	protected ArrayList<Vecteur2D> pointList;
 	protected static Map<String, Color> colorMap = Map.ofEntries(
 			Map.entry("black", Color.black),
@@ -16,8 +17,9 @@ public abstract class Form {
 			Map.entry("yellow", Color.yellow),
 			Map.entry("cyan", Color.cyan));
 	
-	public Form() {
+	public Form(int id) {
 		super();
+		this.id = id;
 		pointList = new ArrayList<Vecteur2D>();
 	}
 	
@@ -33,6 +35,15 @@ public abstract class Form {
 	public void setPointList(ArrayList<Vecteur2D> pointList) {
 		this.pointList = pointList;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 
 
 	public abstract void draw(Graphics g);

@@ -6,8 +6,8 @@ public class Cross extends Form {
 	
 	private String color;
 	
-	public Cross(Vecteur2D dl, Vecteur2D ur, Vecteur2D dr, Vecteur2D ul, String color) {
-		super();
+	public Cross(int id, Vecteur2D dl, Vecteur2D ur, Vecteur2D dr, Vecteur2D ul, String color) {
+		super(id);
 		this.pointList.add(dl);
 		this.pointList.add(ur);
 		this.pointList.add(dr);
@@ -17,10 +17,16 @@ public class Cross extends Form {
 
 	@Override
 	public void draw(Graphics g) {
-		Segment s1 = new Segment(pointList.get(0), pointList.get(1), this.color);
-		Segment s2 = new Segment(pointList.get(2), pointList.get(3), this.color);
-		s1.draw(g);
-		s2.draw(g);
+		int[] dl = this.pointList.get(0).arrondi();
+		int[] ur = this.pointList.get(1).arrondi();
+		
+		int[] dr = this.pointList.get(2).arrondi();
+		int[] ul = this.pointList.get(3).arrondi();
+
+		g.setColor(getColor(color));
+
+		g.drawLine(dl[0], dl[1], ur[0], ur[1]);
+		g.drawLine(dr[0], dr[1], ul[0], ul[1]);
 	}
 
 	public String getColor() {
