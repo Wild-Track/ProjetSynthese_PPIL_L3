@@ -5,6 +5,8 @@
 #include <winsock2.h>
 #include <sstream>
 #include <ws2tcpip.h>
+#include <sstream>
+#include <fstream>
 
 
 #include "Connection.h"
@@ -19,6 +21,7 @@
 #include "SaveParserCOR.h"
 #include "SaveParser.h"
 #include "SaveParserSegmentCOR.h"
+#include "SaveParserTriangleCOR.h"
 
 
 
@@ -26,59 +29,62 @@ Connection* Connection::_instance = NULL;
 
 int main()
 {
+    cout << "Création d'un croix : id : cross1, corrdonées : (1, 1)(2, 2)(2, 1)(1, 2), couleur : red" << endl;
+    Cross* c1;
+    c1 = new Cross("cross1", Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), Vecteur2D(1, 2), "red");
+    cout << "forme sous forme string : " << string(*c1) << endl;
 
-    //char serverAdress[LONGUEUR] = adress;
-    //char msg[LONGUEUR], *msg2 = (char *)malloc(sizeof(char) * LONGUEUR);
-    //short serverPort = port;
+    cout << "translation de la croix" << endl;
+    c1->translation(Vecteur2D(1, 1));
+    cout << string(*c1) << endl;
 
-    //cout << "Entrez l'IP du serveur : " << endl;
-    //cin >> serverAdress;
-    //cout << "Entrez maintenant le port :" << endl;
-    //cin >> serverPort;
+    cout << "homothetie de la croix" << endl;
+    c1->homothety(2, Vecteur2D(0, 0));
+    cout << string(*c1) << endl;
 
+    cout << "rotation de la croix" << endl;
+    c1->rotation(Vecteur2D(1, 1), 3.14156 / 2);
+    cout << string(*c1) << endl;
 
-  /*  Connection co = Connection(serverAdress, serverPort);
+    cout << endl << "Création d'un groupe et ajout de la croix" << endl;
+    FormGroup group = FormGroup("idgroup", "name", "color");
+    group.addForm(*c1);
 
-    cout << "Entrez un msg" << endl;
-    cin >> msg;
+    cout << "group sous forme string : " << string(group) << endl;
 
-    co.sendMsg(msg);
-
-    co.receiveMsg(msg2);
-
-    cout << msg2 << endl;
-*/
-
-    //
-
-    //Cross* f1;
-    //f1 = new Cross(Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), Vecteur2D(1, 2), "red");
-    //f1->translation(Vecteur2D(1, 1));
-    //cout << string(*f1);
-
-    //Segment* s1;
-    //s1 = new Segment(Vecteur2D(-1, -1), Vecteur2D(0, 0), "red");
-    //s1->homothety(2, Vecteur2D(0, 0));
-
-    //FormGroup a = FormGroup("name", "color");
-    //a.addForm(*f1);
-
-    //cout << string(a);
-
-
+    cout << endl << "création d'un triangle ayant pour id t1 et coordonnées (1,1) (2,2) (2,1) et couleur red" << endl;
     Triangle* t1;
-    t1 = new Triangle(Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), "red");
+    t1 = new Triangle("t1", Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), "red");
 
-    //t1->accept(new DrawJava());
+    cout << "envoie au serv du triangle" << endl;
+    t1->accept(new DrawJava());
+
+    cout << "Le serveur va recevoir : " << string(*t1) << endl;
+
+    cout << "Sauvegarde du triangle dans un fichier txt dans le répertoire Save" << endl;
     t1->accept(new Savetxt());
 
 
-    //ofstream file("txt.txt");
 
-    //file.open("C:\\");
-    //file << "fdsqfdsq" << "\n";
-    //file.close();
 
-    SaveParserCOR* a;
-    a = new SaveParserSegmentCOR(NULL);
+    // Mise en place de COR finit, il faut remplir les parser
+    // 
+    // 
+    // 
+    //SaveParserCOR* parserSegment, *parserTriangle;
+    //parserSegment = new SaveParserSegmentCOR(NULL);
+    //parserTriangle = new SaveParserTriangleCOR(parserSegment);
+
+    //ifstream fichier("../Save/Triangle14-18-21.txt", ios::in);
+    //if (fichier) {
+    //    string ligne;
+    //    getline(fichier, ligne);
+    //    Form* form = parserTriangle->findParser(ligne);
+    //    if (form == NULL)
+    //    {
+    //        cerr << "Impossible de parser !" << endl;
+    //    }
+    //}
+    //else
+    //    cerr << "Impossible d'ouvrir le fichier !" << endl;
 }

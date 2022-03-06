@@ -2,7 +2,7 @@
 #include "FormVisitor.h"
 
 
-Circle::Circle(Vecteur2D center, double radius, string color) : Form(color)
+Circle::Circle(string id, Vecteur2D center, double radius, string color) : Form(id, color)
 {
 	_pointList.push_back(&center);
 	_radius = radius;
@@ -16,7 +16,7 @@ void Circle::homothety(double ratio, const Vecteur2D& invariant)
 
 Circle::operator string() const
 {
-	return "type:circle,coord:" + string(*_pointList[0]) + ",radius:" + to_string(_radius) + ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
+	return "type:circle,id:" + _id + ",coord:" + string(*_pointList[0]) + ",radius:" + to_string(_radius) + ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
 }
 
 void Circle::accept(const FormVisitor* formVisitor)

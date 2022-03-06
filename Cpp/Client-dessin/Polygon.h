@@ -7,7 +7,7 @@ namespace polygon
 	class Polygon : public Form
 	{
 	public:
-		Polygon(vector<Vecteur2D*> listpoint, string color);
+		Polygon(string id, vector<Vecteur2D*> listpoint, string color);
 
 		operator string() const;
 

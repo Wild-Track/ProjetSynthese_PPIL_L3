@@ -10,7 +10,7 @@ private:
 	double _radius;
 
 public:
-	Circle(Vecteur2D center, double radius, string color);
+	Circle(string id, Vecteur2D center, double radius, string color);
 
 	void homothety(double ratio, const Vecteur2D& invariant);
 	

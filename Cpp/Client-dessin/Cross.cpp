@@ -4,7 +4,7 @@
 #include "FormVisitor.h"
 
 
-Cross::Cross(Vecteur2D downLeft, Vecteur2D upRight, Vecteur2D downRight, Vecteur2D upLeft, string color) : Form(color)
+Cross::Cross(string id, Vecteur2D downLeft, Vecteur2D upRight, Vecteur2D downRight, Vecteur2D upLeft, string color) : Form(id, color)
 {
 	_pointList.push_back(&downLeft);
 	_pointList.push_back(&upRight);
@@ -19,5 +19,5 @@ void Cross::accept(const FormVisitor* formVisitor)
 
 Cross::operator string() const
 {
-	return "type:cross,coord:" + string(*_pointList[0]) + string(*_pointList[1]) + string(*_pointList[2]) + string(*_pointList[3]) + ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
+	return "type:cross,id:" + _id + ",coord:" + string(*_pointList[0]) + string(*_pointList[1]) + string(*_pointList[2]) + string(*_pointList[3]) + ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
 }

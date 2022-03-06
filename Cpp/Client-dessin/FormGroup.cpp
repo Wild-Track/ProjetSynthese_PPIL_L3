@@ -2,7 +2,7 @@
 #include "FormVisitor.h"
 
 
-FormGroup::FormGroup(string name, string color): Form(color)
+FormGroup::FormGroup(string id, string name, string color): Form(id, color)
 {
 	_name = name;
 }
@@ -60,7 +60,7 @@ FormGroup::operator string() const
 	{
 		out += "{" + string(*form) + "}";
 	}
-	out += ",color:" + this->Form::_color + ",nom:" + _name;
+	out += ",color:" + this->Form::_color + ",nom:" + _name + ",id:" + _id;
 	return out;
 }
 

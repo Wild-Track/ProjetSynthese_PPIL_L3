@@ -11,7 +11,7 @@ private:
 
 public:
 
-	FormGroup(string name, string color);
+	FormGroup(string id, string name, string color);
 
 	void addForm(Form& form);
 	void deleteForm(int i);

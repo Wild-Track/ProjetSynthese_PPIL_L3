@@ -15,11 +15,11 @@ class Form
 protected:
 	vector<Vecteur2D*> _pointList;
 	FormGroup* _group;
-	string _color;
+	string _color, _id;
 
 public:
 
-	Form(string color) { _group = NULL; _color = color; };
+	Form(string id, string color) { _group = NULL; _id = id; _color = color; };
 
 	Vecteur2D& translationVector2D(Vecteur2D& v, const Vecteur2D& u) { v = v + u; return v; }
 	Vecteur2D& rotationVector2D(Vecteur2D& v, const Vecteur2D& invariantPoint, const double& rad);

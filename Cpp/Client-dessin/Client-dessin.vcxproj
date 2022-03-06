@@ -150,6 +150,7 @@
     <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="SaveParserCOR.cpp" />
     <ClCompile Include="SaveParserSegmentCOR.cpp" />
+    <ClCompile Include="SaveParserTriangleCOR.cpp" />
     <ClCompile Include="Savetxt.cpp" />
     <ClCompile Include="Segment.cpp" />
     <ClCompile Include="Triangle.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="SaveParser.h" />
     <ClInclude Include="SaveParserCOR.h" />
     <ClInclude Include="SaveParserSegmentCOR.h" />
+    <ClInclude Include="SaveParserTriangleCOR.h" />
     <ClInclude Include="Savetxt.h" />
     <ClInclude Include="Segment.h" />
     <ClInclude Include="Triangle.h" />
