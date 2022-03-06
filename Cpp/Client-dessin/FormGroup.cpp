@@ -54,13 +54,13 @@ bool FormGroup::operator ==(const FormGroup& group)
 
 FormGroup::operator string() const
 {
-	string out = "{";
+	string out = "groupform:";
 
 	for (Form* form : _formList)
 	{
-		out += string(*form) + ";";
+		out += "{" + string(*form) + "}";
 	}
-	out += "color:" + this->Form::_color + ",nom:" + _name + "}";
+	out += ",color:" + this->Form::_color + ",nom:" + _name;
 	return out;
 }
 

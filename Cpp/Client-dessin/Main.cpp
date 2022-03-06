@@ -6,14 +6,21 @@
 #include <sstream>
 #include <ws2tcpip.h>
 
+
 #include "Connection.h"
 #include "Cross.h"
-#include "FormGroup.h"
 #include "Segment.h"
+#include "Triangle.h"
+#include "Circle.h"
+#include "FormGroup.h"
+#include "Polygon.h"
 #include "DrawJava.h"
+#include "Savetxt.h"
+#include "SaveParserCOR.h"
+#include "SaveParser.h"
+#include "SaveParserSegmentCOR.h"
 
-#define adress "127.0.0.1"
-#define port 6969
+
 
 Connection* Connection::_instance = NULL;
 
@@ -59,8 +66,19 @@ int main()
     //cout << string(a);
 
 
-    Cross* c1;
-    c1 = new Cross(Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), Vecteur2D(1, 2), "red");
+    Triangle* t1;
+    t1 = new Triangle(Vecteur2D(1, 1), Vecteur2D(2, 2), Vecteur2D(2, 1), "red");
 
-    c1->accept(new DrawJava());
+    //t1->accept(new DrawJava());
+    t1->accept(new Savetxt());
+
+
+    //ofstream file("txt.txt");
+
+    //file.open("C:\\");
+    //file << "fdsqfdsq" << "\n";
+    //file.close();
+
+    SaveParserCOR* a;
+    a = new SaveParserSegmentCOR(NULL);
 }
