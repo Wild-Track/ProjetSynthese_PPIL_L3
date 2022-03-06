@@ -14,5 +14,5 @@ void Segment::accept(const FormVisitor* formVisitor)
 
 Segment::operator string() const
 {
-	return "type:segment,id:" + _id + ",coord:" + string(*_pointList[0]) + string(*_pointList[1]) + ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
+	return "type:segment,id:" + _id + ",coord:" + string(*_pointList[0]) + string(*_pointList[1]) + ",color:" + this->Form::_color;
 }

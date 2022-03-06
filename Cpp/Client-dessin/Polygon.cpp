@@ -13,7 +13,7 @@ polygon::Polygon::operator string() const
 	{
 		out += string(*point);
 	}
-	out += ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
+	out += ",color:" + this->Form::_color;
 
 	return out;
 }

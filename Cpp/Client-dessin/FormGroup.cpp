@@ -60,7 +60,7 @@ FormGroup::operator string() const
 	{
 		out += "{" + string(*form) + "}";
 	}
-	out += ",color:" + this->Form::_color + ",nom:" + _name + ",id:" + _id;
+	out += ",nom:" + _name + ",id:" + _id;
 	return out;
 }
 

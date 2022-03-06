@@ -15,5 +15,5 @@ void Triangle::accept(const FormVisitor* formVisitor)
 
 Triangle::operator string() const 
 {
-	return "type:triangle,id:" + _id + ",coord:" + string(*_pointList[0]) + string(*_pointList[1]) + string(*_pointList[2]) + ((this->Form::getFormGroup() == NULL) ? ",color:" + this->Form::_color : "");
+	return "type:triangle,id:" + _id + ",coord:" + string(*_pointList[0]) + string(*_pointList[1]) + string(*_pointList[2]) + ",color:" + this->Form::_color;
 }
